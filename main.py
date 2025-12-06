@@ -1,4 +1,10 @@
+# Make sure you have ran the Models_and_price_prediction.ipynb
 # pip install pyqt5 joblib scikit-learn lightgbm pandas
+
+# This script launches a PyQt5 GUI application for car price prediction.
+# It loads trained models (RandomForest and LightGBM) and metadata from the 'models' folder.
+# The user can input car attributes (model, year, mileage, fuel type, transmission, engine size, manufacturer),
+# and the app will predict the price using both models.
 import sys
 import os
 import joblib
@@ -10,17 +16,17 @@ from PyQt5.QtWidgets import (
 from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import QCompleter
 
-# Leia projekti juurkaust
+# Find project root folder
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# Lae mudelid
+# Load both models
 rf = joblib.load(os.path.join(BASE_DIR, "models", "randomForest.pkl"))
 lgb = joblib.load(os.path.join(BASE_DIR, "models", "lgbModel.pkl"))
 
-# Lae treeningu X.columns
+# Load training X.columns
 X_columns = joblib.load(os.path.join(BASE_DIR, "models", "X_columns.pkl"))
 
-# Lae dropdown väärtused
+# Load dropdown values
 model_grouped_values = joblib.load(os.path.join(BASE_DIR, "models", "model_grouped_values.pkl"))
 fuelType_values = joblib.load(os.path.join(BASE_DIR, "models", "fuelType_values.pkl"))
 transmission_values = joblib.load(os.path.join(BASE_DIR, "models", "transmission_values.pkl"))
@@ -34,6 +40,7 @@ class CarPredictionApp(QWidget):
         self.setWindowTitle("Car Prediction App")
         self.setGeometry(200, 200, 500, 450)
 
+        # Styling
         self.setStyleSheet("""
             QWidget { background-color: #f0f2f5; }
             QLabel { font-size: 14px; font-weight: bold; }
@@ -64,12 +71,12 @@ class CarPredictionApp(QWidget):
         self.model_grouped.setEditable(True)
         self.model_grouped.setCompleter(completer)
 
-        # Year (sisestus)
+        # Year input
         self.year = QLineEdit()
         layout.addWidget(QLabel("Year"))
         layout.addWidget(self.year)
 
-        # Mileage (sisestus)
+        # Mileage input
         self.mileage = QLineEdit()
         layout.addWidget(QLabel("Mileage"))
         layout.addWidget(self.mileage)
@@ -98,12 +105,12 @@ class CarPredictionApp(QWidget):
         layout.addWidget(QLabel("Manufacturer"))
         layout.addWidget(self.manufacturer)
 
-        # Ennustuse nupp
+        # Prediction button
         self.predict_button = QPushButton("Predict Price")
         self.predict_button.clicked.connect(self.predict)
         layout.addWidget(self.predict_button)
 
-        # Tulemuse label
+        # Result label
         self.result_label = QLabel("")
         self.result_label.setFont(QFont("Arial", 12))
         layout.addWidget(self.result_label)
@@ -112,7 +119,7 @@ class CarPredictionApp(QWidget):
 
     def predict(self):
         try:
-            # Tee DataFrame sisendist
+            # Make a dataframe out of the inputs
             uus_auto = pd.DataFrame({
                 'model_grouped':[self.model_grouped.currentText()],
                 'year':[int(self.year.text())],
@@ -123,11 +130,12 @@ class CarPredictionApp(QWidget):
                 'Manufacturer':[self.manufacturer.currentText()]
             })
 
-            # Tee dummies ja reindexi
+            # Convert categorical variables into dummy/one-hot encoded columns
+            # Ensure the DataFrame has the same structure as the training data
             uus_auto = pd.get_dummies(uus_auto)
             uus_auto = uus_auto.reindex(columns=X_columns, fill_value=0)
 
-            # Ennusta mõlema mudeliga
+            # Predict the price with both models
             hind_rf = rf.predict(uus_auto)[0]
             hind_lgb = lgb.predict(uus_auto)[0]
 
