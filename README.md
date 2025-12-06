@@ -28,10 +28,13 @@ This is the program we made, where you can input various car specifications to p
 
 ## Project using
 Clone this repository
-   
-### How to use files ipynb files
-Use Jupyter Notebook to open these files. Files should have all necessary packageses installed. If something isn't installed, use Anaconda Prompt to install missing packages. Restarting Kernle in the main file (Models_and_price_prediction.ipynb) could take some time because our dataset has over 90 000 rows in it, models need to process it little longer.
+### How to replicate our analysis
 
+1. Open `data_cleaning.ipynb` in Jupyter Notebook and run all cells to clean the dataset.
+2. Open `data_analyze.ipynb` and run all cells to see visualizations and exploratory analysis.
+3. Open `Models_and_price_prediction.ipynb`, run all cells to train and evaluate the models NB: CAN TAKE SOME TIME (max 8 min) BECAUSE WE HAVE OVER 90000 CARS IN DATASET.
+4. After models are trained, you can use `main.py` to input car data and predict prices.
+   
 ### How to use main.py 
 Instructions are inside the code, Open with visual studio code.
 
