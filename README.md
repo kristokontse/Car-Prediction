@@ -11,16 +11,18 @@ Machine learning offers a powerful solution by analyzing large amounts of histor
 The goal of this project is to develop a machine learning–based models and program which is capable of predicting used car prices. 
 To achieve this, we use different models (such as Random Forest and LightGBM) to estimate the valuation of the cars.
 
-### data_cleaning.ipynb 
+## Files
+
+#### data_cleaning.ipynb 
 Contains all the necessary code for cleaning and preprocessing the dataset.<br>
 
-### data_analyze.ipynb
+#### data_analyze.ipynb
 Includes visualizations and explanatory analysis performed before model training.<br>
 
-### Models_and_price_prediction.ipynb
+#### Models_and_price_prediction.ipynb
 The main notebook of the project. It contains the machine learning models, the training and testing process, and summary graphs of the results.<br>
 
-### CarsData.csv / CarsData_cleaned.csv
+#### CarsData.csv / CarsData_cleaned.csv
 The original Kaggle dataset and the cleaned version used for analysis and modeling.<br>
 
 ### main.py
