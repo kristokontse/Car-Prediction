@@ -1,4 +1,4 @@
-# pip install pyqt5 joblib scikit-learn lightgbm
+# pip install pyqt5 joblib scikit-learn lightgbm pandas
 import sys
 import os
 import joblib
