@@ -37,5 +37,9 @@ If you can't run the cells, make sure you have all packages installed. If not, m
 4. After models are trained, you can use `main.py` to input car data and predict prices.
    
 ### How to use main.py 
-Instructions are inside the code, Open with visual studio code.
-
+Make sure you have installed pip. If not, install it.
+In the console download the required dependencies:
+```
+pip install pyqt5 joblib scikit-learn lightgbm pandas
+```
+Open main.py and run it. A new window should appear where you can use our models.
