@@ -30,6 +30,7 @@ This is the program we made, where you can input various car specifications to p
 Clone this repository
 ### How to replicate our analysis
 
+If you can't run the cells, make sure you have all packages installed. If not, make sure you download them.
 1. Open `data_cleaning.ipynb` in Jupyter Notebook and run all cells to clean the dataset.
 2. Open `data_analyze.ipynb` and run all cells to see visualizations and exploratory analysis.
 3. Open `Models_and_price_prediction.ipynb`, run all cells to train and evaluate the models NB: CAN TAKE SOME TIME (max 8 min) BECAUSE WE HAVE OVER 90000 CARS IN DATASET.
